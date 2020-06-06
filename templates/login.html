@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title%}
+	Book
+{% endblock%}
+
+{% block body %}
+
+	<form class="login-form" action="{{url_for('login')}}" method="POST">
+		<input type="text" name="name" placeholder="User_name"/>
+		<input type="password" name="password" placeholder="Password"/>
+		<button >login</button>
+		{% if error %}
+			<p>{{ error }}</p>
+		{% endif %}
+		<p class="message">Not Registered? <a href="{{url_for('signin')}}">Register</a>
+	</form>
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'layout.html'%}
+
+{% block title %}
+	List | Books
+{% endblock %}
+
+{% block body %}
+    	<h1>{{ book.isbn }}</h1>
+    	<h1>{{ book.title }}</h1>
+    	<h1>{{ book.author }}</h1>
+    	<h1>{{ book.year }}</h1>
+    	<h1> Reviews Count: {{ ratings_count }} </h1>
+    	<h1>Average rating: {{ average_rating}} </h1>
+	<form  action="{{url_for('book',isbn = book.isbn)}}" method="POST">
+		<input type="text" name="review" placeholder="Write your review"/>
+		<input type="text" name="rating" placeholder="Rating" pattern="[1-5]{1}">
+		<button type="Submit">Submit</button>
+	</form>
+	{% if error %}
+		<p>{{ error }}</p>
+	{% endif %}
+	
+	<table>
+		<tr>
+			<th>Username</th>
+			<th>Review</th>
+			<th>Rating</th>
+			
+		</tr>
+		{% for reviews in review %}
+		<tr >
+			<td>{{ reviews.username }} </td>
+			<td>{{ reviews.review}}</td>
+			<td>{{ reviews.rating }} star(s)</td>
+		</tr>
+		{% endfor %}
+	</table>	
+	<form  action="{{url_for('search')}}" method="POST">
+		<input type="text" name="booksearch" placeholder="ISBN/Title/Author of the book"/>
+		<button>Search Again</button>
+	</form>
+	<form action="{{url_for('logout')}}" method="GET">
+	<button>Logout</button>
+	</form>
+{% endblock%}

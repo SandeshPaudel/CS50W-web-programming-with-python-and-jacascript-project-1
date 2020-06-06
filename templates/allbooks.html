@@ -1,0 +1,45 @@
+{% extends 'layout.html'%}
+
+{% block title %}
+	List | Books
+{% endblock %}
+
+{%block body%}
+	<h1> Here are the books you searched.</h1>
+	
+	
+	{% if allbooks%}
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>ISBN</th>
+			<th>TITLE</th>
+			<th>AUTHOR</th>
+			<th>PUBLICATION_YEAR</th>
+		</tr >
+		{% for books in allbooks %}
+		{% if error %}
+		<p>{{ error }}</p>
+		{% endif %}
+		<tr >
+			<td>{{ books.id }}</td>
+			<td><a href="{{ url_for('book', isbn=books.isbn) }}">{{ books.isbn }}</a></td>
+			<td>{{ books.title }}</td>
+			<td>{{ books.author }}</td>
+			<td>{{ books.year }}</td>
+		
+		</tr>
+		{% endfor %}
+	</table>
+	{% endif %}
+	
+	<form  action="{{url_for('search')}}" method="POST">
+		<input type="text" name="booksearch" placeholder="ISBN/Title/Author of the book"/>
+		<button>Search Again</button>
+	</form>
+	
+	<form action="{{url_for('logout')}}" method="GET">
+	<button>Logout</button>
+	</form>
+	
+{% endblock%}

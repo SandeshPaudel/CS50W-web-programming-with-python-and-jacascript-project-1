@@ -1,0 +1,19 @@
+<!DOCTYPE html5>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        
+    	<link rel="stylesheet" type="text/css" href="{{url_for('static' ,filename='style.css')}}"/>
+    </head>
+    <body>
+		
+		
+       	
+       	{% block body %}
+        <h1> Find and read more books you'll love, and keep track of the books you want to read.</h1>
+    <P align="center">
+    <button><a href="{{url_for('signin')}}">register</a></button><br>
+    <button><a href="{{url_for('login')}}">login</a></button></P> 
+       	{% endblock %}
+    </body>
+</html>
